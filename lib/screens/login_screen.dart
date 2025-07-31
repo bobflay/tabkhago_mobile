@@ -130,7 +130,7 @@ class _LoginScreenState extends State<LoginScreen> {
                     ),
                     const SizedBox(height: 8),
                     Text(
-                      'Homemade dishes delivered to you',
+                      'Homemade Lebanese dishes delivered to you',
                       style: TextStyle(
                         fontSize: 16,
                         color: AppTheme.textLight,
