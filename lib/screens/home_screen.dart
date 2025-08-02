@@ -514,8 +514,9 @@ class _HomeScreenState extends State<HomeScreen> {
         title: Text(
           'TabkhaGo',
           style: GoogleFonts.montserrat(
-            fontWeight: FontWeight.w600, // bolder weight
-            fontSize: 20,                // adjust size if you want
+            fontWeight: FontWeight.w600, 
+            fontSize: 20,
+            letterSpacing: 1.5
           ),
         ),
         actions: [
