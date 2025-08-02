@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:url_launcher/url_launcher.dart';
 import '../services/auth_service.dart';
 import '../services/dish_service.dart';
@@ -146,7 +147,10 @@ class _HomeScreenState extends State<HomeScreen> {
       if (mounted) {
         ScaffoldMessenger.of(context).showSnackBar(
           SnackBar(
-            content: Text('Could not open link. Please check your internet connection.'),
+            content: Text(
+              'Could not open link. Please check your internet connection.',
+              style: GoogleFonts.montserrat(),
+            ),
             backgroundColor: AppTheme.lebanonRed,
             duration: const Duration(seconds: 3),
             action: SnackBarAction(
@@ -176,9 +180,11 @@ class _HomeScreenState extends State<HomeScreen> {
                 size: 28,
               ),
               const SizedBox(width: 8),
-              const Text(
+              Text(
                 'Delete Account',
-                style: TextStyle(fontSize: 20),
+                style: GoogleFonts.montserrat(
+                  fontSize: 20,
+                ),
               ),
             ],
           ),
@@ -186,9 +192,11 @@ class _HomeScreenState extends State<HomeScreen> {
             mainAxisSize: MainAxisSize.min,
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              const Text(
+              Text(
                 'This will open WhatsApp to contact our support team for account deletion assistance.',
-                style: TextStyle(fontSize: 16),
+                style: GoogleFonts.montserrat(
+                  fontSize: 16,
+                ),
               ),
               const SizedBox(height: 16),
               Container(
@@ -200,19 +208,19 @@ class _HomeScreenState extends State<HomeScreen> {
                     color: Colors.red.withValues(alpha: 0.3),
                   ),
                 ),
-                child: const Column(
+                child: Column(
                   children: [
                     Row(
                       children: [
-                        Icon(
+                        const Icon(
                           Icons.info_outline,
                           color: Colors.red,
                           size: 20,
                         ),
-                        SizedBox(width: 8),
+                        const SizedBox(width: 8),
                         Text(
                           'Important Notice',
-                          style: TextStyle(
+                          style: GoogleFonts.montserrat(
                             fontSize: 14,
                             fontWeight: FontWeight.w600,
                             color: Colors.red,
@@ -220,10 +228,10 @@ class _HomeScreenState extends State<HomeScreen> {
                         ),
                       ],
                     ),
-                    SizedBox(height: 8),
+                    const SizedBox(height: 8),
                     Text(
                       'Account deletion is permanent and cannot be undone. All your data, orders, and preferences will be permanently removed.',
-                      style: TextStyle(
+                      style: GoogleFonts.montserrat(
                         fontSize: 14,
                         color: Colors.red,
                       ),
@@ -236,9 +244,11 @@ class _HomeScreenState extends State<HomeScreen> {
           actions: [
             TextButton(
               onPressed: () => Navigator.of(context).pop(false),
-              child: const Text(
+              child: Text(
                 'Cancel',
-                style: TextStyle(color: AppTheme.textLight),
+                style: GoogleFonts.montserrat(
+                  color: AppTheme.textLight,
+                ),
               ),
             ),
             ElevatedButton.icon(
@@ -248,7 +258,10 @@ class _HomeScreenState extends State<HomeScreen> {
                 foregroundColor: Colors.white,
               ),
               icon: const Icon(Icons.message, size: 18),
-              label: const Text('Contact Support'),
+              label: Text(
+                'Contact Support',
+                style: GoogleFonts.montserrat(),
+              ),
             ),
           ],
         );
@@ -279,12 +292,15 @@ class _HomeScreenState extends State<HomeScreen> {
           if (mounted) {
             ScaffoldMessenger.of(context).showSnackBar(
               SnackBar(
-                content: const Row(
+                content: Row(
                   children: [
-                    Icon(Icons.check_circle, color: Colors.white),
-                    SizedBox(width: 8),
+                    const Icon(Icons.check_circle, color: Colors.white),
+                    const SizedBox(width: 8),
                     Expanded(
-                      child: Text('WhatsApp opened. Please send the message to our support team.'),
+                      child: Text(
+                        'WhatsApp opened. Please send the message to our support team.',
+                        style: GoogleFonts.montserrat(),
+                      ),
                     ),
                   ],
                 ),
@@ -310,10 +326,16 @@ class _HomeScreenState extends State<HomeScreen> {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       mainAxisSize: MainAxisSize.min,
                       children: [
-                        const Text('Could not open WhatsApp'),
+                        Text(
+                          'Could not open WhatsApp',
+                          style: GoogleFonts.montserrat(),
+                        ),
                         Text(
                           'Please contact support directly at: +96176731039',
-                          style: TextStyle(fontSize: 12, color: Colors.white70),
+                          style: GoogleFonts.montserrat(
+                            fontSize: 12,
+                            color: Colors.white70,
+                          ),
                         ),
                       ],
                     ),
@@ -374,15 +396,18 @@ class _HomeScreenState extends State<HomeScreen> {
       context: context,
       barrierDismissible: false,
       builder: (BuildContext context) {
-        return const Dialog(
+        return Dialog(
           child: Padding(
-            padding: EdgeInsets.all(20),
+            padding: const EdgeInsets.all(20),
             child: Row(
               mainAxisSize: MainAxisSize.min,
               children: [
-                CircularProgressIndicator(color: AppTheme.lebanonRed),
-                SizedBox(width: 20),
-                Text('Cancelling order...'),
+                const CircularProgressIndicator(color: AppTheme.lebanonRed),
+                const SizedBox(width: 20),
+                Text(
+                'Cancelling order...',
+                style: GoogleFonts.montserrat(),
+              ),
               ],
             ),
           ),
@@ -405,7 +430,10 @@ class _HomeScreenState extends State<HomeScreen> {
                   const Icon(Icons.check_circle, color: Colors.white),
                   const SizedBox(width: 8),
                   Expanded(
-                    child: Text(result['message'] ?? 'Order cancelled successfully!'),
+                    child: Text(
+                      result['message'] ?? 'Order cancelled successfully!',
+                      style: GoogleFonts.montserrat(),
+                    ),
                   ),
                 ],
               ),
@@ -425,7 +453,10 @@ class _HomeScreenState extends State<HomeScreen> {
                   const Icon(Icons.error_outline, color: Colors.white),
                   const SizedBox(width: 8),
                   Expanded(
-                    child: Text(result['message'] ?? 'Failed to cancel order'),
+                    child: Text(
+                      result['message'] ?? 'Failed to cancel order',
+                      style: GoogleFonts.montserrat(),
+                    ),
                   ),
                 ],
               ),
@@ -452,7 +483,10 @@ class _HomeScreenState extends State<HomeScreen> {
                 const Icon(Icons.error_outline, color: Colors.white),
                 const SizedBox(width: 8),
                 Expanded(
-                  child: Text('Network error: ${e.toString()}'),
+                  child: Text(
+                    'Network error: ${e.toString()}',
+                    style: GoogleFonts.montserrat(),
+                  ),
                 ),
               ],
             ),
@@ -477,7 +511,13 @@ class _HomeScreenState extends State<HomeScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('TabkhaGo'),
+        title: Text(
+          'TabkhaGo',
+          style: GoogleFonts.montserrat(
+            fontWeight: FontWeight.w600, // bolder weight
+            fontSize: 20,                // adjust size if you want
+          ),
+        ),
         actions: [
           IconButton(
             icon: const Icon(Icons.logout),
@@ -485,19 +525,36 @@ class _HomeScreenState extends State<HomeScreen> {
               showDialog(
                 context: context,
                 builder: (context) => AlertDialog(
-                  title: const Text('Logout'),
-                  content: const Text('Are you sure you want to logout?'),
+                title: Text(
+                  'Logout',
+                  style: GoogleFonts.montserrat(
+                    fontWeight: FontWeight.w600,
+                    fontSize: 18,
+                  ),
+                ),
+                content: Text(
+                  'Are you sure you want to logout?',
+                  style: GoogleFonts.montserrat(
+                    fontSize: 14,
+                  ),
+                ),
                   actions: [
                     TextButton(
                       onPressed: () => Navigator.pop(context),
-                      child: const Text('Cancel'),
+                      child: Text(
+                      'Cancel',
+                      style: GoogleFonts.montserrat(),
+                    ),
                     ),
                     ElevatedButton(
                       onPressed: () {
                         Navigator.pop(context);
                         _logout();
                       },
-                      child: const Text('Logout'),
+                      child: Text(
+                      'Logout',
+                      style: GoogleFonts.montserrat(),
+                    ),
                     ),
                   ],
                 ),
@@ -517,29 +574,34 @@ class _HomeScreenState extends State<HomeScreen> {
                 padding: const EdgeInsets.all(16),
                 color: Colors.white,
                 child: TextField(
-                  controller: _searchController,
-                  decoration: InputDecoration(
-                    hintText: 'Search for dishes...',
-                    prefixIcon: const Icon(Icons.search),
-                    suffixIcon: _searchController.text.isNotEmpty
-                        ? IconButton(
-                            icon: const Icon(Icons.clear),
-                            onPressed: () {
-                              _searchController.clear();
-                              _loadDishes();
-                            },
-                          )
-                        : null,
+                controller: _searchController,
+                style: GoogleFonts.montserrat(), // Text input style
+                decoration: InputDecoration(
+                  hintText: 'Search for dishes...',
+                  hintStyle: GoogleFonts.montserrat(
+                    color: Colors.grey, // or any color you prefer
+                    fontSize: 14,
                   ),
-                  onChanged: (value) {
-                    // Debounce search
-                    Future.delayed(const Duration(milliseconds: 500), () {
-                      if (_searchController.text == value) {
-                        _searchDishes(value);
-                      }
-                    });
-                  },
+                  prefixIcon: const Icon(Icons.search),
+                  suffixIcon: _searchController.text.isNotEmpty
+                      ? IconButton(
+                          icon: const Icon(Icons.clear),
+                          onPressed: () {
+                            _searchController.clear();
+                            _loadDishes();
+                          },
+                        )
+                      : null,
                 ),
+                onChanged: (value) {
+                  // Debounce search
+                  Future.delayed(const Duration(milliseconds: 500), () {
+                    if (_searchController.text == value) {
+                      _searchDishes(value);
+                    }
+                  });
+                },
+              ),
               ),
               // Dishes List
               Expanded(
@@ -584,36 +646,29 @@ class _HomeScreenState extends State<HomeScreen> {
                 ),
                 const SizedBox(height: 24),
                 // App Title
-                const Text(
-                  'TabkhaGo',
-                  style: TextStyle(
-                    fontSize: 32,
-                    fontWeight: FontWeight.bold,
-                    color: AppTheme.textDark,
-                  ),
+              Text(
+                'TabkhaGo',
+                style: GoogleFonts.montserrat(
+                  fontSize: 32,
+                  fontWeight: FontWeight.bold,
+                  color: AppTheme.textDark,
                 ),
+              ),
                 const SizedBox(height: 8),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    const Text(
-                      'Made with',
-                      style: TextStyle(
-                        fontSize: 16,
-                        color: AppTheme.textLight,
-                        fontStyle: FontStyle.italic,
-                      ),
+                  Text(
+                    'Made',
+                    style: GoogleFonts.montserrat(
+                      fontSize: 16,
+                      color: AppTheme.textLight,
+                      fontStyle: FontStyle.italic,
                     ),
-                    const SizedBox(width: 6),
-                    Icon(
-                      Icons.favorite,
-                      color: AppTheme.lebanonRed,
-                      size: 18,
-                    ),
-                    const SizedBox(width: 6),
-                    const Text(
-                      'in Lebanon',
-                      style: TextStyle(
+                  ),
+                    Text(
+                      ' in Lebanon',
+                      style: GoogleFonts.montserrat(
                         fontSize: 16,
                         color: AppTheme.textLight,
                         fontStyle: FontStyle.italic,
@@ -672,9 +727,9 @@ class _HomeScreenState extends State<HomeScreen> {
                         const SizedBox(height: 16),
                         
                         // Developer Name
-                        const Text(
+                        Text(
                           'Ralph Kahkedjian',
-                          style: TextStyle(
+                          style: GoogleFonts.montserrat(
                             fontSize: 24,
                             fontWeight: FontWeight.bold,
                             color: AppTheme.textDark,
@@ -692,14 +747,14 @@ class _HomeScreenState extends State<HomeScreen> {
                               size: 18,
                             ),
                             const SizedBox(width: 6),
-                            const Text(
-                              'NDU University',
-                              style: TextStyle(
-                                fontSize: 16,
-                                color: AppTheme.textDark,
-                                fontWeight: FontWeight.w500,
+                              Text(
+                                'NDU University',
+                                style: GoogleFonts.montserrat(
+                                  fontSize: 16,
+                                  color: AppTheme.textDark,
+                                  fontWeight: FontWeight.w500,
+                                ),
                               ),
-                            ),
                           ],
                         ),
                         const SizedBox(height: 12),
@@ -714,9 +769,9 @@ class _HomeScreenState extends State<HomeScreen> {
                             color: AppTheme.lebanonGreen,
                             borderRadius: BorderRadius.circular(20),
                           ),
-                          child: const Text(
+                          child: Text(
                             'Xpertbot Intern Developer',
-                            style: TextStyle(
+                            style: GoogleFonts.montserrat(
                               color: Colors.white,
                               fontWeight: FontWeight.w600,
                               fontSize: 14,
@@ -726,10 +781,10 @@ class _HomeScreenState extends State<HomeScreen> {
                         const SizedBox(height: 20),
                         
                         // Description
-                        const Text(
+                        Text(
                           'Passionate Flutter developer crafting beautiful mobile experiences. This app represents dedication to connecting Lebanese home cooks with food lovers, celebrating our rich culinary heritage.',
                           textAlign: TextAlign.center,
-                          style: TextStyle(
+                          style: GoogleFonts.montserrat(
                             fontSize: 16,
                             color: AppTheme.textDark,
                             height: 1.6,
@@ -761,18 +816,18 @@ class _HomeScreenState extends State<HomeScreen> {
                                       ),
                                     ],
                                   ),
-                                  child: const Row(
+                                  child: Row(
                                     mainAxisAlignment: MainAxisAlignment.center,
                                     children: [
-                                      Icon(
+                                      const Icon(
                                         Icons.person,
                                         color: Colors.white,
                                         size: 20,
                                       ),
-                                      SizedBox(width: 8),
+                                      const SizedBox(width: 8),
                                       Text(
                                         'LinkedIn',
-                                        style: TextStyle(
+                                        style: GoogleFonts.montserrat(
                                           color: Colors.white,
                                           fontWeight: FontWeight.w600,
                                         ),
@@ -810,9 +865,9 @@ class _HomeScreenState extends State<HomeScreen> {
                               size: 24,
                             ),
                             const SizedBox(width: 8),
-                            const Text(
+                            Text(
                               'About TabkhaGo',
-                              style: TextStyle(
+                              style: GoogleFonts.montserrat(
                                 fontSize: 20,
                                 fontWeight: FontWeight.bold,
                                 color: AppTheme.textDark,
@@ -821,9 +876,9 @@ class _HomeScreenState extends State<HomeScreen> {
                           ],
                         ),
                         const SizedBox(height: 16),
-                        const Text(
+                        Text(
                           'TabkhaGo connects home cooks (mothers) with customers who want to order homemade dishes. The platform celebrates Lebanese culinary traditions by allowing mothers to share their authentic home-cooked meals with food lovers.',
-                          style: TextStyle(
+                          style: GoogleFonts.montserrat(
                             fontSize: 16,
                             color: AppTheme.textDark,
                             height: 1.5,
@@ -855,9 +910,9 @@ class _HomeScreenState extends State<HomeScreen> {
                               size: 24,
                             ),
                             const SizedBox(width: 8),
-                            const Text(
+                            Text(
                               'Powered by Xpertbot Academy',
-                              style: TextStyle(
+                              style: GoogleFonts.montserrat(
                                 fontSize: 18,
                                 fontWeight: FontWeight.bold,
                                 color: AppTheme.textDark,
@@ -866,9 +921,9 @@ class _HomeScreenState extends State<HomeScreen> {
                           ],
                         ),
                         const SizedBox(height: 16),
-                        const Text(
+                        Text(
                           'Developed during the Xpertbot Internship program, empowering the next generation of Lebanese developers to create innovative solutions.',
-                          style: TextStyle(
+                          style: GoogleFonts.montserrat(
                             fontSize: 16,
                             color: AppTheme.textDark,
                             height: 1.5,
@@ -895,18 +950,18 @@ class _HomeScreenState extends State<HomeScreen> {
                                 ),
                               ],
                             ),
-                            child: const Row(
+                            child: Row(
                               mainAxisAlignment: MainAxisAlignment.center,
                               children: [
-                                Icon(
+                                const Icon(
                                   Icons.launch,
                                   color: Colors.white,
                                   size: 20,
                                 ),
-                                SizedBox(width: 8),
+                                const SizedBox(width: 8),
                                 Text(
                                   'Visit Xpertbot Academy',
-                                  style: TextStyle(
+                                  style: GoogleFonts.montserrat(
                                     color: Colors.white,
                                     fontWeight: FontWeight.w600,
                                   ),
@@ -941,9 +996,9 @@ class _HomeScreenState extends State<HomeScreen> {
                               size: 24,
                             ),
                             const SizedBox(width: 8),
-                            const Text(
+                            Text(
                               'Account Management',
-                              style: TextStyle(
+                              style: GoogleFonts.montserrat(
                                 fontSize: 18,
                                 fontWeight: FontWeight.bold,
                                 color: AppTheme.textDark,
@@ -952,9 +1007,9 @@ class _HomeScreenState extends State<HomeScreen> {
                           ],
                         ),
                         const SizedBox(height: 16),
-                        const Text(
+                        Text(
                           'Need help with your account? Contact our support team directly.',
-                          style: TextStyle(
+                          style: GoogleFonts.montserrat(
                             fontSize: 16,
                             color: AppTheme.textDark,
                             height: 1.5,
@@ -978,18 +1033,18 @@ class _HomeScreenState extends State<HomeScreen> {
                                 width: 1,
                               ),
                             ),
-                            child: const Row(
+                            child: Row(
                               mainAxisAlignment: MainAxisAlignment.center,
                               children: [
-                                Icon(
+                                const Icon(
                                   Icons.delete_forever,
                                   color: Colors.red,
                                   size: 20,
                                 ),
-                                SizedBox(width: 8),
+                                const SizedBox(width: 8),
                                 Text(
                                   'Request Account Deletion',
-                                  style: TextStyle(
+                                  style: GoogleFonts.montserrat(
                                     color: Colors.red,
                                     fontWeight: FontWeight.w600,
                                   ),
@@ -1001,7 +1056,7 @@ class _HomeScreenState extends State<HomeScreen> {
                         const SizedBox(height: 12),
                         Text(
                           'This will open WhatsApp to contact our support team for account deletion assistance.',
-                          style: TextStyle(
+                          style: GoogleFonts.montserrat(
                             fontSize: 12,
                             color: AppTheme.textLight,
                             fontStyle: FontStyle.italic,
@@ -1018,7 +1073,7 @@ class _HomeScreenState extends State<HomeScreen> {
                 // Version Info
                 Text(
                   'Version 1.0.0',
-                  style: TextStyle(
+                  style: GoogleFonts.montserrat(
                     fontSize: 14,
                     color: AppTheme.textLight,
                   ),
@@ -1026,7 +1081,7 @@ class _HomeScreenState extends State<HomeScreen> {
                 const SizedBox(height: 8),
                 Text(
                   '© 2025 TabkhaGo. All rights reserved.',
-                  style: TextStyle(
+                  style: GoogleFonts.montserrat(
                     fontSize: 12,
                     color: AppTheme.textLight,
                   ),
@@ -1036,44 +1091,52 @@ class _HomeScreenState extends State<HomeScreen> {
           ),
         ],
       ),
-      bottomNavigationBar: BottomNavigationBar(
-        type: BottomNavigationBarType.fixed,
-        items: const [
-          BottomNavigationBarItem(
-            icon: Icon(Icons.home),
-            label: 'Home',
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.receipt_long),
-            label: 'Orders',
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.restaurant),
-            label: 'Mothers',
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.info),
-            label: 'About',
-          ),
-        ],
-        currentIndex: _selectedIndex,
-        selectedItemColor: AppTheme.lebanonRed,
-        onTap: _onItemTapped,
+     bottomNavigationBar: BottomNavigationBar(
+      type: BottomNavigationBarType.fixed,
+      items: const [
+        BottomNavigationBarItem(
+          icon: Icon(Icons.home),
+          label: 'Home',
+        ),
+        BottomNavigationBarItem(
+          icon: Icon(Icons.receipt_long),
+          label: 'Orders',
+        ),
+        BottomNavigationBarItem(
+          icon: Icon(Icons.restaurant),
+          label: 'Mothers',
+        ),
+        BottomNavigationBarItem(
+          icon: Icon(Icons.info),
+          label: 'About',
+        ),
+      ],
+      currentIndex: _selectedIndex,
+      selectedItemColor: AppTheme.lebanonRed,
+      selectedLabelStyle: GoogleFonts.montserrat(
+        fontWeight: FontWeight.w600,
+        fontSize: 14,
       ),
+      unselectedLabelStyle: GoogleFonts.montserrat(
+        fontWeight: FontWeight.w400,
+        fontSize: 12,
+      ),
+      onTap: _onItemTapped,
+    ),
     );
   }
 
   Widget _buildDishesContent() {
     if (_isLoading) {
-      return const Center(
+      return Center(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            CircularProgressIndicator(color: AppTheme.lebanonRed),
-            SizedBox(height: 16),
+            const CircularProgressIndicator(color: AppTheme.lebanonRed),
+            const SizedBox(height: 16),
             Text(
               'Loading delicious dishes...',
-              style: TextStyle(
+              style: GoogleFonts.montserrat(
                 fontSize: 16,
                 color: AppTheme.textLight,
               ),
@@ -1096,7 +1159,7 @@ class _HomeScreenState extends State<HomeScreen> {
             const SizedBox(height: 16),
             Text(
               'Oops! Something went wrong',
-              style: TextStyle(
+              style: GoogleFonts.montserrat(
                 fontSize: 18,
                 fontWeight: FontWeight.w600,
                 color: AppTheme.textDark,
@@ -1108,7 +1171,7 @@ class _HomeScreenState extends State<HomeScreen> {
               child: Text(
                 _error!.replaceAll('Exception: ', ''),
                 textAlign: TextAlign.center,
-                style: TextStyle(
+                style: GoogleFonts.montserrat(
                   fontSize: 14,
                   color: AppTheme.textLight,
                 ),
@@ -1118,7 +1181,10 @@ class _HomeScreenState extends State<HomeScreen> {
             ElevatedButton.icon(
               onPressed: _loadDishes,
               icon: const Icon(Icons.refresh),
-              label: const Text('Try Again'),
+              label: Text(
+                'Try Again',
+                style: GoogleFonts.montserrat(),
+              ),
             ),
           ],
         ),
@@ -1138,7 +1204,7 @@ class _HomeScreenState extends State<HomeScreen> {
             const SizedBox(height: 16),
             Text(
               'No dishes found',
-              style: TextStyle(
+              style: GoogleFonts.montserrat(
                 fontSize: 18,
                 fontWeight: FontWeight.w600,
                 color: AppTheme.textDark,
@@ -1149,7 +1215,7 @@ class _HomeScreenState extends State<HomeScreen> {
               _searchController.text.isNotEmpty
                   ? 'Try searching with different keywords'
                   : 'Check back later for new dishes!',
-              style: TextStyle(
+              style: GoogleFonts.montserrat(
                 fontSize: 14,
                 color: AppTheme.textLight,
               ),
@@ -1175,15 +1241,15 @@ class _HomeScreenState extends State<HomeScreen> {
 
   Widget _buildOrdersContent() {
     if (_isLoadingOrders) {
-      return const Center(
+      return Center(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            CircularProgressIndicator(color: AppTheme.lebanonRed),
-            SizedBox(height: 16),
+            const CircularProgressIndicator(color: AppTheme.lebanonRed),
+            const SizedBox(height: 16),
             Text(
               'Loading your orders...',
-              style: TextStyle(
+              style: GoogleFonts.montserrat(
                 fontSize: 16,
                 color: AppTheme.textLight,
               ),
@@ -1206,7 +1272,7 @@ class _HomeScreenState extends State<HomeScreen> {
             const SizedBox(height: 16),
             Text(
               'Failed to load orders',
-              style: TextStyle(
+              style: GoogleFonts.montserrat(
                 fontSize: 18,
                 fontWeight: FontWeight.w600,
                 color: AppTheme.textDark,
@@ -1218,7 +1284,7 @@ class _HomeScreenState extends State<HomeScreen> {
               child: Text(
                 _ordersError!.replaceAll('Exception: ', ''),
                 textAlign: TextAlign.center,
-                style: TextStyle(
+                style: GoogleFonts.montserrat(
                   fontSize: 14,
                   color: AppTheme.textLight,
                 ),
@@ -1228,7 +1294,10 @@ class _HomeScreenState extends State<HomeScreen> {
             ElevatedButton.icon(
               onPressed: _loadOrders,
               icon: const Icon(Icons.refresh),
-              label: const Text('Try Again'),
+              label: Text(
+              'Try Again',
+              style: GoogleFonts.montserrat(),
+            ),
             ),
           ],
         ),
@@ -1248,7 +1317,7 @@ class _HomeScreenState extends State<HomeScreen> {
             const SizedBox(height: 16),
             Text(
               'No orders yet',
-              style: TextStyle(
+              style: GoogleFonts.montserrat(
                 fontSize: 18,
                 fontWeight: FontWeight.w600,
                 color: AppTheme.textDark,
@@ -1257,7 +1326,7 @@ class _HomeScreenState extends State<HomeScreen> {
             const SizedBox(height: 8),
             Text(
               'Start browsing dishes to place your first order!',
-              style: TextStyle(
+              style: GoogleFonts.montserrat(
                 fontSize: 14,
                 color: AppTheme.textLight,
               ),
@@ -1270,7 +1339,10 @@ class _HomeScreenState extends State<HomeScreen> {
                 });
               },
               icon: const Icon(Icons.restaurant_menu),
-              label: const Text('Browse Dishes'),
+              label: Text(
+                'Browse Dishes',
+                style: GoogleFonts.montserrat(),
+              ),
               style: ElevatedButton.styleFrom(
                 backgroundColor: AppTheme.lebanonRed,
               ),

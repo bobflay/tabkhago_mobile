@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 import '../services/mother_service.dart';
 import '../services/auth_service.dart';
 import '../models/mother.dart';
@@ -103,7 +104,8 @@ class _MothersScreenState extends State<MothersScreen> {
         
         ScaffoldMessenger.of(context).showSnackBar(
           SnackBar(
-            content: Text('Failed to load more mothers: ${e.toString()}'),
+            content: Text('Failed to load more mothers: ${e.toString()}',
+                style: GoogleFonts.montserrat()),
             backgroundColor: AppTheme.lebanonRed,
           ),
         );
@@ -136,15 +138,15 @@ class _MothersScreenState extends State<MothersScreen> {
 
   Widget _buildContent() {
     if (_isLoading && _mothers.isEmpty) {
-      return const Center(
+      return Center(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            CircularProgressIndicator(color: AppTheme.lebanonRed),
-            SizedBox(height: 16),
+            const CircularProgressIndicator(color: AppTheme.lebanonRed),
+            const SizedBox(height: 16),
             Text(
               'Loading our wonderful mothers...',
-              style: TextStyle(
+              style: GoogleFonts.montserrat(
                 fontSize: 16,
                 color: AppTheme.textLight,
               ),
@@ -167,7 +169,7 @@ class _MothersScreenState extends State<MothersScreen> {
             const SizedBox(height: 16),
             Text(
               'Oops! Something went wrong',
-              style: TextStyle(
+              style: GoogleFonts.montserrat(
                 fontSize: 18,
                 fontWeight: FontWeight.w600,
                 color: AppTheme.textDark,
@@ -179,7 +181,7 @@ class _MothersScreenState extends State<MothersScreen> {
               child: Text(
                 _error!.replaceAll('Exception: ', ''),
                 textAlign: TextAlign.center,
-                style: TextStyle(
+                style: GoogleFonts.montserrat(
                   fontSize: 14,
                   color: AppTheme.textLight,
                 ),
@@ -189,7 +191,10 @@ class _MothersScreenState extends State<MothersScreen> {
             ElevatedButton.icon(
               onPressed: _loadMothers,
               icon: const Icon(Icons.refresh),
-              label: const Text('Try Again'),
+              label: Text(
+                'Try Again',
+                style: GoogleFonts.montserrat(),
+              ),
             ),
           ],
         ),
@@ -209,7 +214,7 @@ class _MothersScreenState extends State<MothersScreen> {
             const SizedBox(height: 16),
             Text(
               'No mothers found',
-              style: TextStyle(
+              style: GoogleFonts.montserrat(
                 fontSize: 18,
                 fontWeight: FontWeight.w600,
                 color: AppTheme.textDark,
@@ -218,7 +223,7 @@ class _MothersScreenState extends State<MothersScreen> {
             const SizedBox(height: 8),
             Text(
               'Check back later for new home cooks!',
-              style: TextStyle(
+              style: GoogleFonts.montserrat(
                 fontSize: 14,
                 color: AppTheme.textLight,
               ),

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 import '../models/order.dart';
 import '../utils/theme.dart';
 
@@ -36,7 +37,7 @@ class OrderCard extends StatelessWidget {
                       vertical: 6,
                     ),
                     decoration: BoxDecoration(
-                      color: _getStatusColor().withValues(alpha: 0.1),
+                      color: _getStatusColor().withAlpha(25), // 0.1 alpha ~ 25 in int
                       borderRadius: BorderRadius.circular(20),
                       border: Border.all(
                         color: _getStatusColor(),
@@ -45,7 +46,7 @@ class OrderCard extends StatelessWidget {
                     ),
                     child: Text(
                       order.status.toUpperCase(),
-                      style: TextStyle(
+                      style: GoogleFonts.montserrat(
                         color: _getStatusColor(),
                         fontSize: 12,
                         fontWeight: FontWeight.bold,
@@ -55,7 +56,7 @@ class OrderCard extends StatelessWidget {
                   const Spacer(),
                   Text(
                     'Order #${order.id}',
-                    style: const TextStyle(
+                    style: GoogleFonts.montserrat(
                       fontSize: 14,
                       fontWeight: FontWeight.w600,
                       color: AppTheme.textLight,
@@ -64,7 +65,7 @@ class OrderCard extends StatelessWidget {
                 ],
               ),
               const SizedBox(height: 16),
-              
+
               // Dish Info
               Row(
                 children: [
@@ -96,7 +97,7 @@ class OrderCard extends StatelessWidget {
                     ),
                   ),
                   const SizedBox(width: 12),
-                  
+
                   // Dish Details
                   Expanded(
                     child: Column(
@@ -104,7 +105,7 @@ class OrderCard extends StatelessWidget {
                       children: [
                         Text(
                           order.dish.name,
-                          style: const TextStyle(
+                          style: GoogleFonts.montserrat(
                             fontSize: 18,
                             fontWeight: FontWeight.bold,
                             color: AppTheme.textDark,
@@ -117,7 +118,7 @@ class OrderCard extends StatelessWidget {
                           children: [
                             Text(
                               'by ${order.dish.mother.kitchenName}',
-                              style: const TextStyle(
+                              style: GoogleFonts.montserrat(
                                 fontSize: 14,
                                 color: AppTheme.textLight,
                               ),
@@ -137,7 +138,7 @@ class OrderCard extends StatelessWidget {
                           children: [
                             Text(
                               'Qty: ${order.quantity}',
-                              style: const TextStyle(
+                              style: GoogleFonts.montserrat(
                                 fontSize: 14,
                                 fontWeight: FontWeight.w600,
                                 color: AppTheme.textDark,
@@ -146,7 +147,7 @@ class OrderCard extends StatelessWidget {
                             const SizedBox(width: 16),
                             Text(
                               '\$${order.priceTotalAsDouble.toStringAsFixed(2)}',
-                              style: const TextStyle(
+                              style: GoogleFonts.montserrat(
                                 fontSize: 16,
                                 fontWeight: FontWeight.bold,
                                 color: AppTheme.lebanonRed,
@@ -160,7 +161,7 @@ class OrderCard extends StatelessWidget {
                 ],
               ),
               const SizedBox(height: 16),
-              
+
               // Order Details
               Container(
                 padding: const EdgeInsets.all(12),
@@ -182,7 +183,7 @@ class OrderCard extends StatelessWidget {
                         const SizedBox(width: 8),
                         Text(
                           order.paymentMethod,
-                          style: const TextStyle(
+                          style: GoogleFonts.montserrat(
                             fontSize: 14,
                             color: AppTheme.textDark,
                           ),
@@ -190,7 +191,7 @@ class OrderCard extends StatelessWidget {
                       ],
                     ),
                     const SizedBox(height: 8),
-                    
+
                     // Delivery Address
                     Row(
                       crossAxisAlignment: CrossAxisAlignment.start,
@@ -204,7 +205,7 @@ class OrderCard extends StatelessWidget {
                         Expanded(
                           child: Text(
                             order.deliveryAddress,
-                            style: const TextStyle(
+                            style: GoogleFonts.montserrat(
                               fontSize: 14,
                               color: AppTheme.textDark,
                             ),
@@ -214,7 +215,7 @@ class OrderCard extends StatelessWidget {
                         ),
                       ],
                     ),
-                    
+
                     // Notes (if any)
                     if (order.notes != null && order.notes!.isNotEmpty) ...[
                       const SizedBox(height: 8),
@@ -230,7 +231,7 @@ class OrderCard extends StatelessWidget {
                           Expanded(
                             child: Text(
                               order.notes!,
-                              style: const TextStyle(
+                              style: GoogleFonts.montserrat(
                                 fontSize: 14,
                                 color: AppTheme.textDark,
                                 fontStyle: FontStyle.italic,
@@ -246,14 +247,14 @@ class OrderCard extends StatelessWidget {
                 ),
               ),
               const SizedBox(height: 12),
-              
-              // Order Date
+
+              // Order Date and Cancel button
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   Text(
                     'Ordered on ${_formatDate(order.createdAt)}',
-                    style: const TextStyle(
+                    style: GoogleFonts.montserrat(
                       fontSize: 12,
                       color: AppTheme.textLight,
                     ),
@@ -266,9 +267,12 @@ class OrderCard extends StatelessWidget {
                         padding: const EdgeInsets.symmetric(horizontal: 8),
                       ),
                       icon: const Icon(Icons.cancel, size: 16),
-                      label: const Text(
+                      label: Text(
                         'Cancel',
-                        style: TextStyle(fontSize: 12, fontWeight: FontWeight.w600),
+                        style: GoogleFonts.montserrat(
+                          fontSize: 12,
+                          fontWeight: FontWeight.w600,
+                        ),
                       ),
                     ),
                 ],
@@ -321,9 +325,9 @@ class OrderCard extends StatelessWidget {
                 size: 28,
               ),
               const SizedBox(width: 8),
-              const Text(
+              Text(
                 'Cancel Order',
-                style: TextStyle(fontSize: 20),
+                style: GoogleFonts.montserrat(fontSize: 20),
               ),
             ],
           ),
@@ -331,9 +335,9 @@ class OrderCard extends StatelessWidget {
             mainAxisSize: MainAxisSize.min,
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              const Text(
+              Text(
                 'Are you sure you want to cancel this order?',
-                style: TextStyle(fontSize: 16),
+                style: GoogleFonts.montserrat(fontSize: 16),
               ),
               const SizedBox(height: 12),
               Container(
@@ -349,7 +353,7 @@ class OrderCard extends StatelessWidget {
                       height: 40,
                       decoration: BoxDecoration(
                         borderRadius: BorderRadius.circular(6),
-                        color: AppTheme.lebanonRed.withValues(alpha: 0.1),
+                        color: AppTheme.lebanonRed.withAlpha(25),
                       ),
                       child: const Icon(
                         Icons.restaurant,
@@ -364,7 +368,7 @@ class OrderCard extends StatelessWidget {
                         children: [
                           Text(
                             order.dish.name,
-                            style: const TextStyle(
+                            style: GoogleFonts.montserrat(
                               fontSize: 14,
                               fontWeight: FontWeight.w600,
                               color: AppTheme.textDark,
@@ -375,7 +379,7 @@ class OrderCard extends StatelessWidget {
                           const SizedBox(height: 2),
                           Text(
                             'Qty: ${order.quantity} • \$${order.priceTotalAsDouble.toStringAsFixed(2)}',
-                            style: const TextStyle(
+                            style: GoogleFonts.montserrat(
                               fontSize: 12,
                               color: AppTheme.textLight,
                             ),
@@ -387,9 +391,9 @@ class OrderCard extends StatelessWidget {
                 ),
               ),
               const SizedBox(height: 12),
-              const Text(
+              Text(
                 'This action cannot be undone.',
-                style: TextStyle(
+                style: GoogleFonts.montserrat(
                   fontSize: 14,
                   color: Colors.red,
                   fontStyle: FontStyle.italic,
@@ -400,9 +404,9 @@ class OrderCard extends StatelessWidget {
           actions: [
             TextButton(
               onPressed: () => Navigator.of(context).pop(),
-              child: const Text(
+              child: Text(
                 'Keep Order',
-                style: TextStyle(color: AppTheme.textLight),
+                style: GoogleFonts.montserrat(color: AppTheme.textLight),
               ),
             ),
             ElevatedButton(
@@ -414,7 +418,7 @@ class OrderCard extends StatelessWidget {
                 backgroundColor: Colors.red,
                 foregroundColor: Colors.white,
               ),
-              child: const Text('Cancel Order'),
+              child: Text('Cancel Order', style: GoogleFonts.montserrat()),
             ),
           ],
         );

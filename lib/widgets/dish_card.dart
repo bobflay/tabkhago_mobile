@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 import '../models/dish.dart';
 import '../utils/theme.dart';
 import 'order_dialog.dart';
@@ -81,7 +82,7 @@ class DishCard extends StatelessWidget {
                         borderRadius: BorderRadius.circular(20),
                         boxShadow: [
                           BoxShadow(
-                            color: Colors.black.withValues(alpha: 0.2),
+                            color: Colors.black.withOpacity(0.2),
                             blurRadius: 4,
                             offset: const Offset(0, 2),
                           ),
@@ -89,7 +90,7 @@ class DishCard extends StatelessWidget {
                       ),
                       child: Text(
                         '\$${dish.priceAsDouble.toStringAsFixed(2)}',
-                        style: const TextStyle(
+                        style: GoogleFonts.montserrat(
                           color: Colors.white,
                           fontWeight: FontWeight.bold,
                           fontSize: 14,
@@ -117,7 +118,7 @@ class DishCard extends StatelessWidget {
                           dish.availableQuantity == 0
                               ? 'Sold Out'
                               : 'Few Left',
-                          style: const TextStyle(
+                          style: GoogleFonts.montserrat(
                             color: Colors.white,
                             fontSize: 12,
                             fontWeight: FontWeight.w600,
@@ -137,7 +138,7 @@ class DishCard extends StatelessWidget {
                   // Dish Name
                   Text(
                     dish.name,
-                    style: const TextStyle(
+                    style: GoogleFonts.montserrat(
                       fontSize: 20,
                       fontWeight: FontWeight.bold,
                       color: AppTheme.textDark,
@@ -149,7 +150,7 @@ class DishCard extends StatelessWidget {
                   // Dish Description
                   Text(
                     dish.description,
-                    style: const TextStyle(
+                    style: GoogleFonts.montserrat(
                       fontSize: 14,
                       color: AppTheme.textLight,
                       height: 1.4,
@@ -178,15 +179,17 @@ class DishCard extends StatelessWidget {
                                   dish.mother.profilePicture!,
                                   fit: BoxFit.cover,
                                   errorBuilder: (context, error, stackTrace) {
-                                    return const Icon(
+                                    return Icon(
                                       Icons.person,
                                       color: AppTheme.lebanonGreen,
+                                      size: 24,
                                     );
                                   },
                                 )
-                              : const Icon(
+                              : Icon(
                                   Icons.person,
                                   color: AppTheme.lebanonGreen,
+                                  size: 24,
                                 ),
                         ),
                       ),
@@ -201,7 +204,7 @@ class DishCard extends StatelessWidget {
                                 Expanded(
                                   child: Text(
                                     dish.mother.kitchenName,
-                                    style: const TextStyle(
+                                    style: GoogleFonts.montserrat(
                                       fontSize: 14,
                                       fontWeight: FontWeight.w600,
                                       color: AppTheme.textDark,
@@ -230,7 +233,7 @@ class DishCard extends StatelessWidget {
                                 Expanded(
                                   child: Text(
                                     dish.mother.location,
-                                    style: TextStyle(
+                                    style: GoogleFonts.montserrat(
                                       fontSize: 12,
                                       color: AppTheme.textLight,
                                     ),
@@ -247,7 +250,7 @@ class DishCard extends StatelessWidget {
                                 const SizedBox(width: 2),
                                 Text(
                                   dish.ratingAsDouble.toStringAsFixed(1),
-                                  style: const TextStyle(
+                                  style: GoogleFonts.montserrat(
                                     fontSize: 12,
                                     fontWeight: FontWeight.w600,
                                     color: AppTheme.textDark,
@@ -265,7 +268,7 @@ class DishCard extends StatelessWidget {
                   SizedBox(
                     width: double.infinity,
                     child: ElevatedButton.icon(
-                      onPressed: dish.availableQuantity > 0 
+                      onPressed: dish.availableQuantity > 0
                           ? () => _showOrderDialog(context)
                           : null,
                       icon: Icon(
@@ -277,6 +280,7 @@ class DishCard extends StatelessWidget {
                         dish.availableQuantity > 0
                             ? 'Place Order'
                             : 'Out of Stock',
+                        style: GoogleFonts.montserrat(),
                       ),
                       style: ElevatedButton.styleFrom(
                         backgroundColor: dish.availableQuantity > 0
@@ -299,7 +303,7 @@ class DishCard extends StatelessWidget {
       context: context,
       builder: (context) => OrderDialog(dish: dish),
     );
-    
+
     // Handle the result if needed
     if (result == true && context.mounted) {
       // Order was placed successfully, could refresh data or show confirmation
@@ -310,7 +314,10 @@ class DishCard extends StatelessWidget {
               const Icon(Icons.check_circle, color: Colors.white),
               const SizedBox(width: 8),
               Expanded(
-                child: Text('Order placed for ${dish.name}!'),
+                child: Text(
+                  'Order placed for ${dish.name}!',
+                  style: GoogleFonts.montserrat(),
+                ),
               ),
             ],
           ),

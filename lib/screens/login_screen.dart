@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 import '../services/auth_service.dart';
 import '../utils/theme.dart';
 import 'register_screen.dart';
@@ -29,7 +30,10 @@ class _LoginScreenState extends State<LoginScreen> {
   void _showSnackBar(String message, {bool isError = true}) {
     ScaffoldMessenger.of(context).showSnackBar(
       SnackBar(
-        content: Text(message),
+        content: Text(
+          message,
+          style: GoogleFonts.montserrat(), // Added Montserrat here too
+        ),
         backgroundColor: isError ? Colors.red : AppTheme.lebanonGreen,
       ),
     );
@@ -37,7 +41,6 @@ class _LoginScreenState extends State<LoginScreen> {
 
   Future<void> _login() async {
     if (_formKey.currentState!.validate()) {
-      
       setState(() {
         _isLoading = true;
       });
@@ -46,12 +49,13 @@ class _LoginScreenState extends State<LoginScreen> {
       print('LoginScreen: Testing API connectivity...');
       final isConnected = await _authService.testApiConnectivity();
       print('LoginScreen: API connectivity: $isConnected');
-      
+
       if (!isConnected) {
         setState(() {
           _isLoading = false;
         });
-        _showSnackBar('Unable to connect to server. Please check your internet connection.');
+        _showSnackBar(
+            'Unable to connect to server. Please check your internet connection.');
         return;
       }
 
@@ -70,7 +74,6 @@ class _LoginScreenState extends State<LoginScreen> {
       if (mounted) {
         if (result['success']) {
           print('LoginScreen: Login successful, navigating to HomeScreen');
-          // Navigate immediately to avoid any interference
           Navigator.pushReplacement(
             context,
             MaterialPageRoute(builder: (_) => const HomeScreen()),
@@ -107,7 +110,7 @@ class _LoginScreenState extends State<LoginScreen> {
                         color: AppTheme.lebanonRed,
                         boxShadow: [
                           BoxShadow(
-                            color: AppTheme.lebanonRed.withValues(alpha: 0.3),
+                            color: AppTheme.lebanonRed.withOpacity(0.3),
                             blurRadius: 20,
                             offset: const Offset(0, 10),
                           ),
@@ -120,9 +123,9 @@ class _LoginScreenState extends State<LoginScreen> {
                       ),
                     ),
                     const SizedBox(height: 24),
-                    const Text(
+                    Text(
                       'TabkhaGo',
-                      style: TextStyle(
+                      style: GoogleFonts.montserrat(
                         fontSize: 32,
                         fontWeight: FontWeight.bold,
                         color: AppTheme.textDark,
@@ -131,7 +134,7 @@ class _LoginScreenState extends State<LoginScreen> {
                     const SizedBox(height: 8),
                     Text(
                       'Homemade Lebanese dishes delivered to you',
-                      style: TextStyle(
+                      style: GoogleFonts.montserrat(
                         fontSize: 16,
                         color: AppTheme.textLight,
                       ),
@@ -149,10 +152,12 @@ class _LoginScreenState extends State<LoginScreen> {
                     TextFormField(
                       controller: _emailController,
                       keyboardType: TextInputType.emailAddress,
-                      decoration: const InputDecoration(
+                      decoration: InputDecoration(
                         hintText: 'Email',
-                        prefixIcon: Icon(Icons.email_outlined),
+                        prefixIcon: const Icon(Icons.email_outlined),
+                        hintStyle: GoogleFonts.montserrat(),
                       ),
+                      style: GoogleFonts.montserrat(),
                       validator: (value) {
                         if (value == null || value.isEmpty) {
                           return 'Please enter your email';
@@ -182,7 +187,9 @@ class _LoginScreenState extends State<LoginScreen> {
                             });
                           },
                         ),
+                        hintStyle: GoogleFonts.montserrat(),
                       ),
+                      style: GoogleFonts.montserrat(),
                       validator: (value) {
                         if (value == null || value.isEmpty) {
                           return 'Please enter your password';
@@ -206,14 +213,20 @@ class _LoginScreenState extends State<LoginScreen> {
                                     AlwaysStoppedAnimation<Color>(Colors.white),
                               ),
                             )
-                          : const Text('Login'),
+                          : Text(
+                              'Login',
+                              style: GoogleFonts.montserrat(),
+                            ),
                     ),
                     const SizedBox(height: 16),
                     TextButton(
                       onPressed: () {
                         // TODO: Implement forgot password
                       },
-                      child: const Text('Forgot Password?'),
+                      child: Text(
+                        'Forgot Password?',
+                        style: GoogleFonts.montserrat(),
+                      ),
                     ),
                   ],
                 ),
@@ -225,7 +238,9 @@ class _LoginScreenState extends State<LoginScreen> {
                 children: [
                   Text(
                     "Don't have an account? ",
-                    style: TextStyle(color: AppTheme.textLight),
+                    style: GoogleFonts.montserrat(
+                      color: AppTheme.textLight,
+                    ),
                   ),
                   TextButton(
                     onPressed: () {
@@ -236,7 +251,10 @@ class _LoginScreenState extends State<LoginScreen> {
                         ),
                       );
                     },
-                    child: const Text('Sign Up'),
+                    child: Text(
+                      'Sign Up',
+                      style: GoogleFonts.montserrat(),
+                    ),
                   ),
                 ],
               ),

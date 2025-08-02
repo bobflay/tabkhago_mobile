@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'services/auth_service.dart';
 import 'screens/login_screen.dart';
 import 'screens/home_screen.dart';
@@ -82,18 +83,18 @@ class _SplashScreenState extends State<SplashScreen> {
               ),
             ),
             const SizedBox(height: 24),
-            const Text(
+            Text(
               'TabkhaGo',
-              style: TextStyle(
+              style: GoogleFonts.montserrat(
                 fontSize: 36,
                 fontWeight: FontWeight.bold,
                 color: Colors.white,
               ),
             ),
             const SizedBox(height: 8),
-            const Text(
-              'Homemade with Love',
-              style: TextStyle(
+            Text(
+              'Authentic Homemade Lebanese Dishes',
+              style: GoogleFonts.montserrat(
                 fontSize: 16,
                 color: Colors.white70,
               ),

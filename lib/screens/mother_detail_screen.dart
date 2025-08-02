@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:url_launcher/url_launcher.dart';
 import '../models/mother.dart';
 import '../utils/theme.dart';
@@ -215,11 +216,11 @@ class MotherDetailScreen extends StatelessWidget {
                             padding: const EdgeInsets.symmetric(horizontal: 20),
                             child: Text(
                               mother.kitchenName,
-                              style: const TextStyle(
+                              style: GoogleFonts.montserrat(
                                 fontSize: 28,
                                 fontWeight: FontWeight.bold,
                                 color: Colors.white,
-                                shadows: [
+                                shadows: const [
                                   Shadow(
                                     offset: Offset(0, 2),
                                     blurRadius: 4,
@@ -229,6 +230,7 @@ class MotherDetailScreen extends StatelessWidget {
                               ),
                               textAlign: TextAlign.center,
                             ),
+
                           ),
                           const SizedBox(height: 12),
                           // Verification Badge with enhanced styling
@@ -254,18 +256,18 @@ class MotherDetailScreen extends StatelessWidget {
                                   ),
                                 ],
                               ),
-                              child: const Row(
+                              child: Row(
                                 mainAxisSize: MainAxisSize.min,
                                 children: [
-                                  Icon(
+                                  const Icon(
                                     Icons.verified,
                                     size: 18,
                                     color: Colors.white,
                                   ),
-                                  SizedBox(width: 8),
+                                  const SizedBox(width: 8),
                                   Text(
                                     'Verified Mother',
-                                    style: TextStyle(
+                                    style: GoogleFonts.montserrat(
                                       fontSize: 14,
                                       fontWeight: FontWeight.w600,
                                       color: Colors.white,
@@ -317,16 +319,17 @@ class MotherDetailScreen extends StatelessWidget {
                             const SizedBox(width: 6),
                             Text(
                               mother.rating,
-                              style: const TextStyle(
+                              style: GoogleFonts.montserrat(
                                 fontSize: 16,
                                 fontWeight: FontWeight.bold,
                                 color: AppTheme.lebanonRed,
                               ),
                             ),
+
                             const SizedBox(width: 4),
-                            const Text(
+                            Text(
                               'Rating',
-                              style: TextStyle(
+                              style: GoogleFonts.montserrat(
                                 fontSize: 14,
                                 color: AppTheme.lebanonRed,
                               ),
@@ -359,7 +362,7 @@ class MotherDetailScreen extends StatelessWidget {
                             const SizedBox(width: 6),
                             Text(
                               mother.location,
-                              style: const TextStyle(
+                              style: GoogleFonts.montserrat(
                                 fontSize: 14,
                                 fontWeight: FontWeight.w500,
                                 color: AppTheme.lebanonGreen,
@@ -392,9 +395,9 @@ class MotherDetailScreen extends StatelessWidget {
                                 size: 24,
                               ),
                               const SizedBox(width: 8),
-                              const Text(
+                              Text(
                                 'About the Cook',
-                                style: TextStyle(
+                                style: GoogleFonts.montserrat(
                                   fontSize: 20,
                                   fontWeight: FontWeight.bold,
                                   color: AppTheme.textDark,
@@ -405,7 +408,7 @@ class MotherDetailScreen extends StatelessWidget {
                           const SizedBox(height: 16),
                           Text(
                             mother.bio,
-                            style: const TextStyle(
+                            style: GoogleFonts.montserrat(
                               fontSize: 16,
                               color: AppTheme.textDark,
                               height: 1.6,
@@ -437,9 +440,9 @@ class MotherDetailScreen extends StatelessWidget {
                                 size: 24,
                               ),
                               const SizedBox(width: 8),
-                              const Text(
+                              Text(
                                 'Contact Information',
-                                style: TextStyle(
+                                style: GoogleFonts.montserrat(
                                   fontSize: 20,
                                   fontWeight: FontWeight.bold,
                                   color: AppTheme.textDark,
@@ -494,9 +497,9 @@ class MotherDetailScreen extends StatelessWidget {
                                 size: 24,
                               ),
                               const SizedBox(width: 8),
-                              const Text(
+                              Text(
                                 'Kitchen Info',
-                                style: TextStyle(
+                                style: GoogleFonts.montserrat(
                                   fontSize: 20,
                                   fontWeight: FontWeight.bold,
                                   color: AppTheme.textDark,
@@ -603,7 +606,7 @@ class MotherDetailScreen extends StatelessWidget {
                 children: [
                   Text(
                     label,
-                    style: TextStyle(
+                    style: GoogleFonts.montserrat(
                       fontSize: 12,
                       color: AppTheme.textLight,
                       fontWeight: FontWeight.w500,
@@ -611,13 +614,14 @@ class MotherDetailScreen extends StatelessWidget {
                   ),
                   Text(
                     value,
-                    style: const TextStyle(
+                    style: GoogleFonts.montserrat(
                       fontSize: 16,
                       color: AppTheme.textDark,
                       fontWeight: FontWeight.w500,
                     ),
                   ),
                 ],
+
               ),
             ),
             if (onTap != null)
@@ -648,32 +652,32 @@ class MotherDetailScreen extends StatelessWidget {
         ),
       ),
       child: Column(
-        children: [
-          Icon(
-            icon,
-            size: 24,
+      children: [
+        Icon(
+          icon,
+          size: 24,
+          color: color,
+        ),
+        const SizedBox(height: 8),
+        Text(
+          value,
+          style: GoogleFonts.montserrat(
+            fontSize: 16,
+            fontWeight: FontWeight.bold,
             color: color,
           ),
-          const SizedBox(height: 8),
-          Text(
-            value,
-            style: TextStyle(
-              fontSize: 16,
-              fontWeight: FontWeight.bold,
-              color: color,
-            ),
-            textAlign: TextAlign.center,
+          textAlign: TextAlign.center,
+        ),
+        const SizedBox(height: 4),
+        Text(
+          label,
+          style: GoogleFonts.montserrat(
+            fontSize: 12,
+            color: AppTheme.textLight,
           ),
-          const SizedBox(height: 4),
-          Text(
-            label,
-            style: TextStyle(
-              fontSize: 12,
-              color: AppTheme.textLight,
-            ),
-            textAlign: TextAlign.center,
-          ),
-        ],
+          textAlign: TextAlign.center,
+        ),
+      ],
       ),
     );
   }

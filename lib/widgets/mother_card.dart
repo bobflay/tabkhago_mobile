@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 import '../models/mother.dart';
 import '../utils/theme.dart';
 
@@ -36,7 +37,7 @@ class MotherCard extends StatelessWidget {
                     height: 60,
                     decoration: BoxDecoration(
                       shape: BoxShape.circle,
-                      color: AppTheme.lebanonGreen.withValues(alpha: 0.1),
+                      color: AppTheme.lebanonGreen.withOpacity(0.1),
                       border: Border.all(
                         color: AppTheme.lebanonGreen,
                         width: 2,
@@ -75,7 +76,7 @@ class MotherCard extends StatelessWidget {
                             Expanded(
                               child: Text(
                                 mother.kitchenName,
-                                style: const TextStyle(
+                                style: GoogleFonts.montserrat(
                                   fontSize: 18,
                                   fontWeight: FontWeight.bold,
                                   color: AppTheme.textDark,
@@ -92,18 +93,18 @@ class MotherCard extends StatelessWidget {
                                   color: AppTheme.lebanonGreen,
                                   borderRadius: BorderRadius.circular(12),
                                 ),
-                                child: const Row(
+                                child: Row(
                                   mainAxisSize: MainAxisSize.min,
                                   children: [
-                                    Icon(
+                                    const Icon(
                                       Icons.verified,
                                       size: 12,
                                       color: Colors.white,
                                     ),
-                                    SizedBox(width: 4),
+                                    const SizedBox(width: 4),
                                     Text(
                                       'Verified',
-                                      style: TextStyle(
+                                      style: GoogleFonts.montserrat(
                                         fontSize: 10,
                                         fontWeight: FontWeight.w600,
                                         color: Colors.white,
@@ -117,7 +118,7 @@ class MotherCard extends StatelessWidget {
                         const SizedBox(height: 4),
                         Text(
                           mother.user.name,
-                          style: TextStyle(
+                          style: GoogleFonts.montserrat(
                             fontSize: 14,
                             color: AppTheme.textLight,
                             fontWeight: FontWeight.w500,
@@ -135,7 +136,7 @@ class MotherCard extends StatelessWidget {
                             Expanded(
                               child: Text(
                                 mother.location,
-                                style: TextStyle(
+                                style: GoogleFonts.montserrat(
                                   fontSize: 12,
                                   color: AppTheme.textLight,
                                 ),
@@ -152,7 +153,7 @@ class MotherCard extends StatelessWidget {
               // Bio
               Text(
                 mother.bio,
-                style: TextStyle(
+                style: GoogleFonts.montserrat(
                   fontSize: 14,
                   color: AppTheme.textDark,
                   height: 1.4,
@@ -170,7 +171,7 @@ class MotherCard extends StatelessWidget {
                       vertical: 4,
                     ),
                     decoration: BoxDecoration(
-                      color: AppTheme.lebanonRed.withValues(alpha: 0.1),
+                      color: AppTheme.lebanonRed.withOpacity(0.1),
                       borderRadius: BorderRadius.circular(8),
                     ),
                     child: Row(
@@ -184,7 +185,7 @@ class MotherCard extends StatelessWidget {
                         const SizedBox(width: 4),
                         Text(
                           mother.rating,
-                          style: const TextStyle(
+                          style: GoogleFonts.montserrat(
                             fontSize: 14,
                             fontWeight: FontWeight.w600,
                             color: AppTheme.lebanonRed,
@@ -201,7 +202,7 @@ class MotherCard extends StatelessWidget {
                         vertical: 4,
                       ),
                       decoration: BoxDecoration(
-                        color: AppTheme.lebanonGreen.withValues(alpha: 0.1),
+                        color: AppTheme.lebanonGreen.withOpacity(0.1),
                         borderRadius: BorderRadius.circular(8),
                       ),
                       child: Row(
@@ -215,7 +216,7 @@ class MotherCard extends StatelessWidget {
                           const SizedBox(width: 4),
                           Text(
                             mother.user.phone!,
-                            style: const TextStyle(
+                            style: GoogleFonts.montserrat(
                               fontSize: 12,
                               fontWeight: FontWeight.w500,
                               color: AppTheme.lebanonGreen,

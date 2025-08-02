@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 import '../services/auth_service.dart';
 import '../utils/theme.dart';
 import 'home_screen.dart';
@@ -35,7 +36,10 @@ class _RegisterScreenState extends State<RegisterScreen> {
   void _showSnackBar(String message, {bool isError = true}) {
     ScaffoldMessenger.of(context).showSnackBar(
       SnackBar(
-        content: Text(message),
+        content: Text(
+          message,
+          style: GoogleFonts.montserrat(),
+        ),
         backgroundColor: isError ? Colors.red : AppTheme.lebanonGreen,
       ),
     );
@@ -60,7 +64,6 @@ class _RegisterScreenState extends State<RegisterScreen> {
 
       if (mounted) {
         if (result['success']) {
-          // Navigate immediately without showing snackbar to avoid interference
           Navigator.pushReplacement(
             context,
             MaterialPageRoute(builder: (_) => const HomeScreen()),
@@ -76,7 +79,13 @@ class _RegisterScreenState extends State<RegisterScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Create Account'),
+        title: Text(
+          'Create Account',
+          style: GoogleFonts.montserrat(
+            color: AppTheme.textDark,
+            fontWeight: FontWeight.w600,
+          ),
+        ),
         backgroundColor: Colors.transparent,
         elevation: 0,
         foregroundColor: AppTheme.textDark,
@@ -99,7 +108,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                         color: AppTheme.lebanonGreen,
                         boxShadow: [
                           BoxShadow(
-                            color: AppTheme.lebanonGreen.withValues(alpha: 0.3),
+                            color: AppTheme.lebanonGreen.withOpacity(0.3),
                             blurRadius: 20,
                             offset: const Offset(0, 10),
                           ),
@@ -112,9 +121,9 @@ class _RegisterScreenState extends State<RegisterScreen> {
                       ),
                     ),
                     const SizedBox(height: 24),
-                    const Text(
+                    Text(
                       'Join TabkhaGo',
-                      style: TextStyle(
+                      style: GoogleFonts.montserrat(
                         fontSize: 28,
                         fontWeight: FontWeight.bold,
                         color: AppTheme.textDark,
@@ -123,7 +132,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                     const SizedBox(height: 8),
                     Text(
                       'Create an account to start ordering',
-                      style: TextStyle(
+                      style: GoogleFonts.montserrat(
                         fontSize: 16,
                         color: AppTheme.textLight,
                       ),
@@ -141,10 +150,12 @@ class _RegisterScreenState extends State<RegisterScreen> {
                     TextFormField(
                       controller: _nameController,
                       textCapitalization: TextCapitalization.words,
-                      decoration: const InputDecoration(
+                      decoration: InputDecoration(
                         hintText: 'Full Name',
-                        prefixIcon: Icon(Icons.person_outline),
+                        prefixIcon: const Icon(Icons.person_outline),
+                        hintStyle: GoogleFonts.montserrat(),
                       ),
+                      style: GoogleFonts.montserrat(),
                       validator: (value) {
                         if (value == null || value.isEmpty) {
                           return 'Please enter your name';
@@ -159,10 +170,12 @@ class _RegisterScreenState extends State<RegisterScreen> {
                     TextFormField(
                       controller: _emailController,
                       keyboardType: TextInputType.emailAddress,
-                      decoration: const InputDecoration(
+                      decoration: InputDecoration(
                         hintText: 'Email',
-                        prefixIcon: Icon(Icons.email_outlined),
+                        prefixIcon: const Icon(Icons.email_outlined),
+                        hintStyle: GoogleFonts.montserrat(),
                       ),
+                      style: GoogleFonts.montserrat(),
                       validator: (value) {
                         if (value == null || value.isEmpty) {
                           return 'Please enter your email';
@@ -177,10 +190,12 @@ class _RegisterScreenState extends State<RegisterScreen> {
                     TextFormField(
                       controller: _phoneController,
                       keyboardType: TextInputType.phone,
-                      decoration: const InputDecoration(
+                      decoration: InputDecoration(
                         hintText: 'Phone Number',
-                        prefixIcon: Icon(Icons.phone_outlined),
+                        prefixIcon: const Icon(Icons.phone_outlined),
+                        hintStyle: GoogleFonts.montserrat(),
                       ),
+                      style: GoogleFonts.montserrat(),
                       validator: (value) {
                         if (value == null || value.isEmpty) {
                           return 'Please enter your phone number';
@@ -210,7 +225,9 @@ class _RegisterScreenState extends State<RegisterScreen> {
                             });
                           },
                         ),
+                        hintStyle: GoogleFonts.montserrat(),
                       ),
+                      style: GoogleFonts.montserrat(),
                       validator: (value) {
                         if (value == null || value.isEmpty) {
                           return 'Please enter a password';
@@ -240,7 +257,9 @@ class _RegisterScreenState extends State<RegisterScreen> {
                             });
                           },
                         ),
+                        hintStyle: GoogleFonts.montserrat(),
                       ),
+                      style: GoogleFonts.montserrat(),
                       validator: (value) {
                         if (value == null || value.isEmpty) {
                           return 'Please confirm your password';
@@ -267,7 +286,10 @@ class _RegisterScreenState extends State<RegisterScreen> {
                                     AlwaysStoppedAnimation<Color>(Colors.white),
                               ),
                             )
-                          : const Text('Create Account'),
+                          : Text(
+                              'Create Account',
+                              style: GoogleFonts.montserrat(),
+                            ),
                     ),
                   ],
                 ),
@@ -279,13 +301,18 @@ class _RegisterScreenState extends State<RegisterScreen> {
                 children: [
                   Text(
                     'Already have an account? ',
-                    style: TextStyle(color: AppTheme.textLight),
+                    style: GoogleFonts.montserrat(
+                      color: AppTheme.textLight,
+                    ),
                   ),
                   TextButton(
                     onPressed: () {
                       Navigator.pop(context);
                     },
-                    child: const Text('Login'),
+                    child: Text(
+                      'Login',
+                      style: GoogleFonts.montserrat(),
+                    ),
                   ),
                 ],
               ),
@@ -294,7 +321,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
               Text(
                 'By creating an account, you agree to our\nTerms of Service and Privacy Policy',
                 textAlign: TextAlign.center,
-                style: TextStyle(
+                style: GoogleFonts.montserrat(
                   fontSize: 12,
                   color: AppTheme.textLight,
                 ),
