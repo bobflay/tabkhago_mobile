@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 import '../models/dish.dart';
 import '../models/order.dart';
 import '../services/order_service.dart';
@@ -43,7 +44,14 @@ class _OrderDialogState extends State<OrderDialog> {
   void _showSnackBar(String message, {bool isError = true}) {
     ScaffoldMessenger.of(context).showSnackBar(
       SnackBar(
-        content: Text(message),
+        content: Text(
+          message,
+          style: GoogleFonts.montserrat(
+            color: Colors.white,
+            fontWeight: FontWeight.w500,
+            fontSize: 16,
+          ),
+        ),
         backgroundColor: isError ? Colors.red : AppTheme.lebanonGreen,
         duration: Duration(seconds: isError ? 4 : 2),
       ),
@@ -74,10 +82,7 @@ class _OrderDialogState extends State<OrderDialog> {
 
       if (mounted) {
         if (result['success']) {
-          // Close the order dialog first
           Navigator.pop(context, true);
-          
-          // Show success animation if order object is available
           if (result['order'] != null) {
             _showSuccessAnimation(result['order']);
           } else {
@@ -131,7 +136,7 @@ class _OrderDialogState extends State<OrderDialog> {
                       children: [
                         Text(
                           'Place Order',
-                          style: const TextStyle(
+                          style: GoogleFonts.montserrat(
                             fontSize: 20,
                             fontWeight: FontWeight.bold,
                             color: Colors.white,
@@ -140,7 +145,7 @@ class _OrderDialogState extends State<OrderDialog> {
                         const SizedBox(height: 4),
                         Text(
                           widget.dish.name,
-                          style: const TextStyle(
+                          style: GoogleFonts.montserrat(
                             fontSize: 16,
                             color: Colors.white70,
                           ),
@@ -167,53 +172,222 @@ class _OrderDialogState extends State<OrderDialog> {
                     child: Form(
                       key: _formKey,
                       child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      // Dish Info
-                      Row(
+                        crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
-                          ClipRRect(
-                            borderRadius: BorderRadius.circular(8),
-                            child: Container(
-                              width: 60,
-                              height: 60,
-                              color: AppTheme.backgroundGray,
-                              child: widget.dish.photo != null
-                                  ? Image.network(
-                                      widget.dish.photo!,
-                                      fit: BoxFit.cover,
-                                      errorBuilder: (context, error, stackTrace) {
-                                        return const Icon(Icons.restaurant);
-                                      },
-                                    )
-                                  : const Icon(Icons.restaurant),
+                          // Dish Info
+                          Row(
+                            children: [
+                              ClipRRect(
+                                borderRadius: BorderRadius.circular(8),
+                                child: Container(
+                                  width: 60,
+                                  height: 60,
+                                  color: AppTheme.backgroundGray,
+                                  child: widget.dish.photo != null
+                                      ? Image.network(
+                                          widget.dish.photo!,
+                                          fit: BoxFit.cover,
+                                          errorBuilder: (context, error, stackTrace) {
+                                            return const Icon(Icons.restaurant);
+                                          },
+                                        )
+                                      : const Icon(Icons.restaurant),
+                                ),
+                              ),
+                              const SizedBox(width: 12),
+                              Expanded(
+                                child: Column(
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: [
+                                    Text(
+                                      widget.dish.name,
+                                      style: GoogleFonts.montserrat(
+                                        fontSize: 16,
+                                        fontWeight: FontWeight.bold,
+                                      ),
+                                    ),
+                                    Text(
+                                      'by ${widget.dish.mother.kitchenName}',
+                                      style: GoogleFonts.montserrat(
+                                        fontSize: 14,
+                                        color: AppTheme.textLight,
+                                      ),
+                                    ),
+                                    Text(
+                                      '\$${widget.dish.priceAsDouble.toStringAsFixed(2)} each',
+                                      style: GoogleFonts.montserrat(
+                                        fontSize: 14,
+                                        fontWeight: FontWeight.w600,
+                                        color: AppTheme.lebanonRed,
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                              ),
+                            ],
+                          ),
+                          const SizedBox(height: 24),
+
+                          // Quantity
+                          Text(
+                            'Quantity',
+                            style: GoogleFonts.montserrat(
+                              fontSize: 16,
+                              fontWeight: FontWeight.w600,
                             ),
                           ),
-                          const SizedBox(width: 12),
-                          Expanded(
-                            child: Column(
-                              crossAxisAlignment: CrossAxisAlignment.start,
+
+                          const SizedBox(height: 8),
+                          Container(
+                            decoration: BoxDecoration(
+                              border: Border.all(color: Colors.grey.shade300),
+                              borderRadius: BorderRadius.circular(8),
+                            ),
+                            child: Row(
+                              mainAxisSize: MainAxisSize.min,
+                              children: [
+                                IconButton(
+                                  onPressed: _quantity > 1
+                                      ? () => setState(() => _quantity--)
+                                      : null,
+                                  icon: const Icon(Icons.remove),
+                                ),
+                                Container(
+                                  padding: const EdgeInsets.symmetric(horizontal: 16),
+                                  child: Text(
+                                    '$_quantity',
+                                    style: GoogleFonts.montserrat(
+                                      fontSize: 18,
+                                      fontWeight: FontWeight.bold,
+                                    ),
+                                  ),
+                                ),
+                                IconButton(
+                                  onPressed: _quantity < widget.dish.availableQuantity
+                                      ? () => setState(() => _quantity++)
+                                      : null,
+                                  icon: const Icon(Icons.add),
+                                ),
+                              ],
+                            ),
+                          ),
+                          const SizedBox(height: 20),
+
+                          // Payment Method
+                          Text(
+                            'Payment Method',
+                            style: GoogleFonts.montserrat(
+                              fontSize: 16,
+                              fontWeight: FontWeight.w600,
+                            ),
+                          ),
+
+                          const SizedBox(height: 8),
+                          DropdownButtonFormField<String>(
+                            value: _paymentMethod,
+                            decoration: InputDecoration(
+                              filled: true,
+                              fillColor: Colors.white,
+                              border: OutlineInputBorder(
+                                borderRadius: BorderRadius.circular(8),
+                                borderSide: BorderSide.none,
+                              ),
+                            ),
+                            items: _paymentMethods.map((method) {
+                              return DropdownMenuItem(
+                                value: method,
+                                child: Text(
+                                  method,
+                                  style: GoogleFonts.montserrat(),
+                                ),
+                              );
+                            }).toList(),
+                            onChanged: (value) {
+                              setState(() {
+                                _paymentMethod = value!;
+                              });
+                            },
+                          ),
+                          const SizedBox(height: 20),
+
+                          // Delivery Address
+                          Text(
+                            'Delivery Address',
+                            style: GoogleFonts.montserrat(
+                              fontSize: 16,
+                              fontWeight: FontWeight.w600,
+                            ),
+                          ),
+
+                          const SizedBox(height: 8),
+                          TextFormField(
+                            controller: _addressController,
+                            decoration: InputDecoration(
+                              hintText: 'Enter your full delivery address',
+                              prefixIcon: const Icon(Icons.location_on),
+                              hintStyle: GoogleFonts.montserrat(),
+                            ),
+                            maxLines: 2,
+                            validator: (value) {
+                              if (value == null || value.trim().isEmpty) {
+                                return 'Please enter your delivery address';
+                              }
+                              if (value.trim().length < 10) {
+                                return 'Please enter a complete address';
+                              }
+                              return null;
+                            },
+                            style: GoogleFonts.montserrat(),
+                          ),
+                          const SizedBox(height: 20),
+
+                          // Notes (Optional)
+                          Text(
+                            'Special Instructions (Optional)',
+                            style: GoogleFonts.montserrat(
+                              fontSize: 16,
+                              fontWeight: FontWeight.w600,
+                            ),
+                          ),
+                          const SizedBox(height: 8),
+                          TextFormField(
+                            controller: _notesController,
+                            decoration: InputDecoration(
+                              hintText: 'Any special instructions for the cook or delivery',
+                              prefixIcon: const Icon(Icons.note),
+                              hintStyle: GoogleFonts.montserrat(),
+                            ),
+                            maxLines: 2,
+                            style: GoogleFonts.montserrat(),
+                          ),
+                          const SizedBox(height: 24),
+
+                          // Total Price
+                          Container(
+                            padding: const EdgeInsets.all(16),
+                            decoration: BoxDecoration(
+                              color: AppTheme.lebanonGreen.withValues(alpha: 0.1),
+                              borderRadius: BorderRadius.circular(8),
+                              border: Border.all(
+                                color: AppTheme.lebanonGreen.withValues(alpha: 0.3),
+                              ),
+                            ),
+                            child: Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
                               children: [
                                 Text(
-                                  widget.dish.name,
-                                  style: const TextStyle(
-                                    fontSize: 16,
+                                  'Total:',
+                                  style: GoogleFonts.montserrat(
+                                    fontSize: 18,
                                     fontWeight: FontWeight.bold,
                                   ),
                                 ),
                                 Text(
-                                  'by ${widget.dish.mother.kitchenName}',
-                                  style: TextStyle(
-                                    fontSize: 14,
-                                    color: AppTheme.textLight,
-                                  ),
-                                ),
-                                Text(
-                                  '\$${widget.dish.priceAsDouble.toStringAsFixed(2)} each',
-                                  style: const TextStyle(
-                                    fontSize: 14,
-                                    fontWeight: FontWeight.w600,
-                                    color: AppTheme.lebanonRed,
+                                  '\$${totalPrice.toStringAsFixed(2)}',
+                                  style: GoogleFonts.montserrat(
+                                    fontSize: 20,
+                                    fontWeight: FontWeight.bold,
+                                    color: AppTheme.lebanonGreen,
                                   ),
                                 ),
                               ],
@@ -221,165 +395,6 @@ class _OrderDialogState extends State<OrderDialog> {
                           ),
                         ],
                       ),
-                      const SizedBox(height: 24),
-                      
-                      // Quantity
-                      const Text(
-                        'Quantity',
-                        style: TextStyle(
-                          fontSize: 16,
-                          fontWeight: FontWeight.w600,
-                        ),
-                      ),
-                      const SizedBox(height: 8),
-                      Container(
-                        decoration: BoxDecoration(
-                          border: Border.all(color: Colors.grey.shade300),
-                          borderRadius: BorderRadius.circular(8),
-                        ),
-                        child: Row(
-                          mainAxisSize: MainAxisSize.min,
-                          children: [
-                            IconButton(
-                              onPressed: _quantity > 1
-                                  ? () => setState(() => _quantity--)
-                                  : null,
-                              icon: const Icon(Icons.remove),
-                            ),
-                            Container(
-                              padding: const EdgeInsets.symmetric(horizontal: 16),
-                              child: Text(
-                                '$_quantity',
-                                style: const TextStyle(
-                                  fontSize: 18,
-                                  fontWeight: FontWeight.bold,
-                                ),
-                              ),
-                            ),
-                            IconButton(
-                              onPressed: _quantity < widget.dish.availableQuantity
-                                  ? () => setState(() => _quantity++)
-                                  : null,
-                              icon: const Icon(Icons.add),
-                            ),
-                          ],
-                        ),
-                      ),
-                      const SizedBox(height: 20),
-                      
-                      // Payment Method
-                      const Text(
-                        'Payment Method',
-                        style: TextStyle(
-                          fontSize: 16,
-                          fontWeight: FontWeight.w600,
-                        ),
-                      ),
-                      const SizedBox(height: 8),
-                      DropdownButtonFormField<String>(
-                        value: _paymentMethod,
-                        decoration: InputDecoration(
-                          filled: true,
-                          fillColor: Colors.white,
-                          border: OutlineInputBorder(
-                            borderRadius: BorderRadius.circular(8),
-                            borderSide: BorderSide.none,
-                          ),
-                        ),
-                        items: _paymentMethods.map((method) {
-                          return DropdownMenuItem(
-                            value: method,
-                            child: Text(method),
-                          );
-                        }).toList(),
-                        onChanged: (value) {
-                          setState(() {
-                            _paymentMethod = value!;
-                          });
-                        },
-                      ),
-                      const SizedBox(height: 20),
-                      
-                      // Delivery Address
-                      const Text(
-                        'Delivery Address',
-                        style: TextStyle(
-                          fontSize: 16,
-                          fontWeight: FontWeight.w600,
-                        ),
-                      ),
-                      const SizedBox(height: 8),
-                      TextFormField(
-                        controller: _addressController,
-                        decoration: const InputDecoration(
-                          hintText: 'Enter your full delivery address',
-                          prefixIcon: Icon(Icons.location_on),
-                        ),
-                        maxLines: 2,
-                        validator: (value) {
-                          if (value == null || value.trim().isEmpty) {
-                            return 'Please enter your delivery address';
-                          }
-                          if (value.trim().length < 10) {
-                            return 'Please enter a complete address';
-                          }
-                          return null;
-                        },
-                      ),
-                      const SizedBox(height: 20),
-                      
-                      // Notes (Optional)
-                      const Text(
-                        'Special Instructions (Optional)',
-                        style: TextStyle(
-                          fontSize: 16,
-                          fontWeight: FontWeight.w600,
-                        ),
-                      ),
-                      const SizedBox(height: 8),
-                      TextFormField(
-                        controller: _notesController,
-                        decoration: const InputDecoration(
-                          hintText: 'Any special instructions for the cook or delivery',
-                          prefixIcon: Icon(Icons.note),
-                        ),
-                        maxLines: 2,
-                      ),
-                      const SizedBox(height: 24),
-                      
-                      // Total Price
-                      Container(
-                        padding: const EdgeInsets.all(16),
-                        decoration: BoxDecoration(
-                          color: AppTheme.lebanonGreen.withValues(alpha: 0.1),
-                          borderRadius: BorderRadius.circular(8),
-                          border: Border.all(
-                            color: AppTheme.lebanonGreen.withValues(alpha: 0.3),
-                          ),
-                        ),
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          children: [
-                            const Text(
-                              'Total:',
-                              style: TextStyle(
-                                fontSize: 18,
-                                fontWeight: FontWeight.bold,
-                              ),
-                            ),
-                            Text(
-                              '\$${totalPrice.toStringAsFixed(2)}',
-                              style: const TextStyle(
-                                fontSize: 20,
-                                fontWeight: FontWeight.bold,
-                                color: AppTheme.lebanonGreen,
-                              ),
-                            ),
-                          ],
-                        ),
-                      ),
-                    ],
-                  ),
                     ),
                   ),
                 ),
@@ -392,9 +407,7 @@ class _OrderDialogState extends State<OrderDialog> {
                 children: [
                   Expanded(
                     child: OutlinedButton(
-                      onPressed: _isLoading
-                          ? null
-                          : () => Navigator.pop(context),
+                      onPressed: _isLoading ? null : () => Navigator.pop(context),
                       style: OutlinedButton.styleFrom(
                         foregroundColor: _isLoading ? Colors.grey : null,
                         side: BorderSide(
@@ -405,7 +418,10 @@ class _OrderDialogState extends State<OrderDialog> {
                           borderRadius: BorderRadius.circular(12),
                         ),
                       ),
-                      child: const Text('Cancel'),
+                      child: Text(
+                        'Cancel',
+                        style: GoogleFonts.montserrat(),
+                      ),
                     ),
                   ),
                   const SizedBox(width: 12),
@@ -414,9 +430,8 @@ class _OrderDialogState extends State<OrderDialog> {
                     child: ElevatedButton.icon(
                       onPressed: _isLoading ? null : _placeOrder,
                       style: ElevatedButton.styleFrom(
-                        backgroundColor: _isLoading 
-                            ? Colors.grey 
-                            : AppTheme.lebanonGreen,
+                        backgroundColor:
+                            _isLoading ? Colors.grey : AppTheme.lebanonGreen,
                         padding: const EdgeInsets.symmetric(vertical: 16),
                         shape: RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(12),
@@ -435,7 +450,7 @@ class _OrderDialogState extends State<OrderDialog> {
                           : const Icon(Icons.restaurant_menu),
                       label: Text(
                         _isLoading ? 'Placing Order...' : 'Place Order',
-                        style: const TextStyle(
+                        style: GoogleFonts.montserrat(
                           fontSize: 16,
                           fontWeight: FontWeight.bold,
                         ),

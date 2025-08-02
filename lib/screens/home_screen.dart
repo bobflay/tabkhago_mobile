@@ -650,7 +650,7 @@ class _HomeScreenState extends State<HomeScreen> {
                 'TabkhaGo',
                 style: GoogleFonts.montserrat(
                   fontSize: 32,
-                  fontWeight: FontWeight.bold,
+                  fontWeight: FontWeight.w600,
                   color: AppTheme.textDark,
                 ),
               ),
